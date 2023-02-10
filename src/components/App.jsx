@@ -42,9 +42,17 @@ export class App extends Component {
     });
   };
 
+  getFilteredContacts = () => {
+    const { contacts, filter } = this.state;
+    const normaliseFilter = filter.trim().toLowerCase();
+    return contacts.filter(contact => {
+      return contact.name.toLowerCase().includes(normaliseFilter);
+    });
+  };
+
   render() {
     const { contacts, filter } = this.state;
-
+    const filteredContacts = this.getFilteredContacts();
     return (
       <>
         <div>
@@ -55,8 +63,7 @@ export class App extends Component {
           <Filter value={filter} onChange={this.handleFilter} />
           {contacts.length > 0 && (
             <ContactList
-              contacts={contacts}
-              filter={filter}
+              contacts={filteredContacts}
               onDelete={this.deleteContact}
             />
           )}
