@@ -12,4 +12,8 @@ export const Button = styled.button`
   border-radius: 10px;
   font-weight: 600;
   text-transform: capitalize;
+  
+  &:hover {
+   background-color : #e91e63;
+  }
 `;

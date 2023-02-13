@@ -14,10 +14,18 @@ export const Button = styled.button`
   border-radius: 10px;
   font-weight: 600;
   text-transform: capitalize;
+   &:hover {
+   background-color : #8bc34a;
+  }
 `;
 
 export const Input = styled.input`
 display: block;
+border: 1px solid black;
+&:hover {
+  border-color : #8bc34a;
+  outline: none;
+  }
 `;
 export const Form = styled.form`
 width: 30%;
