@@ -1,26 +1,29 @@
-import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux'; 
+
+import { setName, setNumber } from 'redux/phonebookSlice';
 import { Button, Input, Form, Label } from './ContactForm .styled';
 
-export function ContactForm({ onSubmit }) {
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
-
+export function ContactForm({ onSubmit }) { 
+  const name = useSelector(state => state.contactData.name);
+  const number = useSelector(state => state.contactData.number);
+  const dispatch = useDispatch();
+  
   const inputChange = event => {
     const { name, value } = event.target;
     switch (name) {
       case 'name':
-        setName(value);
+        dispatch(setName(value));
         break;
       case 'number':
-        setNumber(value);
+        dispatch(setNumber(value));
         break;
       default:
         break;
     }
   };
   const resetForm = () => {
-    setName('');
-    setNumber('');
+    dispatch(setName(''));
+    dispatch(setNumber(''));
   };
   const handleSubmit = event => {
     event.preventDefault();
