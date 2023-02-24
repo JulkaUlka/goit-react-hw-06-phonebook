@@ -1,33 +1,44 @@
 import { useSelector, useDispatch } from 'react-redux'; 
-
-import { setName, setNumber } from 'redux/phonebookSlice';
+import { useState } from 'react';
+import { addContact } from 'redux/phonebookSlice';
 import { Button, Input, Form, Label } from './ContactForm .styled';
+import { nanoid } from 'nanoid';
+import { getContacts } from 'redux/selectors';
 
 export function ContactForm({ onSubmit }) { 
-  const name = useSelector(state => state.contactData.name);
-  const number = useSelector(state => state.contactData.number);
+  const contacts = useSelector(getContacts);
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
   const dispatch = useDispatch();
   
   const inputChange = event => {
     const { name, value } = event.target;
     switch (name) {
       case 'name':
-        dispatch(setName(value));
+        setName(value);
         break;
       case 'number':
-        dispatch(setNumber(value));
+        setNumber(value);
         break;
       default:
         break;
     }
   };
   const resetForm = () => {
-    dispatch(setName(''));
-    dispatch(setNumber(''));
+  setName('');
+    setNumber('');
   };
   const handleSubmit = event => {
     event.preventDefault();
-    onSubmit({ name, number });
+    const isExist = contacts.find(contact => {
+      return contact.name === name;
+    });
+    if (isExist) {
+      alert('This contact is existed!!!!');
+      return;
+    }
+
+    dispatch(addContact({ name, number, id: nanoid() }));
     resetForm();
   };
 

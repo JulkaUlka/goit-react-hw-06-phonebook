@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Block } from './Filter.styled';
+import { addFilter } from 'redux/filterSlice';
+import { useDispatch } from 'react-redux';
 
-export function Filter(props) {
-  const { value, onChange } = props;
+export function Filter() {
+  const dispatch = useDispatch();
   return (
     <Block>
       <p>Find contacts by name</p>
-      <input value={value} onChange={onChange} />
+      <input onChange={event => dispatch(addFilter(event.target.value))} />
     </Block>
   );
 }
