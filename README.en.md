@@ -102,4 +102,4 @@ the line are required.
    initialized and linted and built before deployment.
 3. If all steps are successful, the built production version of the project
    files is sent to the `gh-pages` branch. Otherwise, the script execution log
-   will indicate what the problem is.
+   will indicate what the problem is
