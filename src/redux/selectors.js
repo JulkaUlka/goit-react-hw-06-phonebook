@@ -12,3 +12,4 @@ export const getFilteredContacts = createSelector(
     );
   }
 );
+export const getIsloading = state => state.contacts.isLoading;

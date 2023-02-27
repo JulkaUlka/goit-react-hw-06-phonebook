@@ -17,3 +17,13 @@ export const Button = styled.button`
    background-color : #e91e63;
   }
 `;
+export const List = styled.ul`
+display: flex;
+flex-direction: column;
+
+gap: 0.5em;`;
+export const Item = styled.li`
+display: flex;
+justify-content: space-between;
+width: 30%;
+`;
